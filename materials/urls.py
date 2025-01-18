@@ -9,7 +9,7 @@ from materials.views import (CourseViewSet, LessonCreateView, LessonDeleteView,
 app_name = MaterialsConfig.name
 
 router = DefaultRouter()
-router.register(r"courses", CourseViewSet)
+router.register(r"courses", CourseViewSet, basename="course")
 
 # router = SimpleRouter()
 # router.register(r"courses", CourseViewSet)
