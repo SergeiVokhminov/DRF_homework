@@ -1,0 +1,35 @@
+[
+  {
+    "model": "materials.lesson",
+    "pk": 1,
+    "fields": {
+      "title": "1",
+      "picture": "",
+      "description": "",
+      "link_to_the_video": "",
+      "course": null
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 2,
+    "fields": {
+      "title": "программы для работы",
+      "picture": "",
+      "description": "поможем установить необходимое программное обеспечение для работы",
+      "link_to_the_video": "",
+      "course": 1
+    }
+  },
+  {
+    "model": "materials.lesson",
+    "pk": 3,
+    "fields": {
+      "title": "алфавит",
+      "picture": "",
+      "description": "изучение букв и транскрипций",
+      "link_to_the_video": "",
+      "course": 4
+    }
+  }
+]
