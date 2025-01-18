@@ -15,23 +15,25 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class UserUpdateApiView(UpdateAPIView):
+    """ ."""
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class UserRetrieveApiView(RetrieveAPIView):
+    """ ."""
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class PaymentListView(generics.ListAPIView):
+    """ ."""
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
-
-    filter_backends = (
+    filter_backends = [
         DjangoFilterBackend,
-        OrderingFilter,
-    )
+        OrderingFilter
+    ]
     ordering_fields = ("date",)
     filterset_fields = (
         "course",
