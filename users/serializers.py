@@ -5,6 +5,7 @@ from users.models import User, Payment
 
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Пользователь."""
+
     class Meta:
         model = User
         fields = "__all__"
@@ -13,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class PaymentSerializer(serializers.ModelSerializer):
     """Сериализатор для модели платежа."""
+
     class Meta:
         model = Payment
         fields = "__all__"
