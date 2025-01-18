@@ -1,10 +1,10 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, generics
+from rest_framework import generics, viewsets
 from rest_framework.filters import OrderingFilter
-from rest_framework.generics import UpdateAPIView, RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView, UpdateAPIView
 
-from users.models import User, Payment
-from users.serializers import UserSerializer, PaymentSerializer
+from users.models import Payment, User
+from users.serializers import PaymentSerializer, UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -15,25 +15,25 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class UserUpdateApiView(UpdateAPIView):
-    """ ."""
+    """."""
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class UserRetrieveApiView(RetrieveAPIView):
-    """ ."""
+    """."""
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class PaymentListView(generics.ListAPIView):
-    """ ."""
+    """."""
+
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
-    filter_backends = [
-        DjangoFilterBackend,
-        OrderingFilter
-    ]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
     ordering_fields = ("date",)
     filterset_fields = (
         "course",
