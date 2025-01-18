@@ -7,11 +7,11 @@ from users.models import User, Payment
 class UserAdmin(admin.ModelAdmin):
     list_display = ("id", "email", "phone_number", "city")
     search_fields = ("email", "city")
-    ordering = ("-date",)
+    list_filter = ("email", "city")
 
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "date", "course", "lesson", "amount", "payment_method")
     search_fields = ("user", "course", "lesson")
-    ordering = ("-date",)
+    list_filter = ("user", "course", "lesson")

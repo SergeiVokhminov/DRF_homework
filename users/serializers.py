@@ -8,8 +8,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = "__all__"
-        # fields = ('email', 'password', 'phone', 'city', 'avatar')
+        # fields = "__all__"
+        fields = ("id", 'email', 'password', 'phone_number', 'city', 'avatar')
 
 
 class PaymentSerializer(serializers.ModelSerializer):
