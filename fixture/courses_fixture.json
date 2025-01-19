@@ -1,0 +1,47 @@
+[
+  {
+    "fields": {
+      "title": "Django",
+      "picture": "",
+      "description": "изучение основ Django."
+    },
+    "model": "materials.course",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "title": "DRF",
+      "picture": "",
+      "description": "погружение в drf!"
+    },
+    "model": "materials.course",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "title": "английский",
+      "picture": "",
+      "description": "погружение в английский"
+    },
+    "model": "materials.course",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "title": "Испанский",
+      "picture": "",
+      "description": "/////"
+    },
+    "model": "materials.course",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "title": "Изучение иностранных языков с носителями!",
+      "picture": "",
+      "description": "Курс изучения иностранных языков онлайн"
+    },
+    "model": "materials.course",
+    "pk": 7
+  }
+]
