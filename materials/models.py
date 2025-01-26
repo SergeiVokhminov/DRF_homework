@@ -1,5 +1,7 @@
 from django.db import models
 
+from config import settings
+
 
 class Course(models.Model):
     """Поля для модели курса."""
@@ -20,6 +22,14 @@ class Course(models.Model):
         blank=True,
         null=True,
         help_text="Введите описание курса",
+    )
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        verbose_name="Владелец курса",
+        help_text="Введите владельца курса",
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
@@ -68,6 +78,14 @@ class Lesson(models.Model):
         help_text="Выберите курс",
         blank=True,
         null=True,
+    )
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        verbose_name="Владелец урока",
+        help_text="Введите владельца урока",
+        null=True,
+        blank=True,
     )
 
     def __str__(self):

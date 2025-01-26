@@ -20,6 +20,8 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class CourseLessonSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели подсчета количества уроков."""
+
     lessons_count = serializers.SerializerMethodField(read_only=True)
     lessons = LessonSerializer(many=True, read_only=True)
 
