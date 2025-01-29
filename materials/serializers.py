@@ -15,12 +15,12 @@ class CourseSerializer(serializers.ModelSerializer):
 class LessonSerializer(serializers.ModelSerializer):
     """Сериализатор для модели урока."""
 
-    course = CourseSerializer(read_only=True)
+    # course = CourseSerializer(read_only=True)
+    link_to_the_video = serializers.CharField(validators=[validate_video_link])
 
     class Meta:
         model = Lesson
         fields = "__all__"
-        validators = (validate_video_link("link_to_the_video"))
 
 
 class CourseLessonSerializer(serializers.ModelSerializer):
