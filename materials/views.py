@@ -1,17 +1,25 @@
 from rest_framework import generics, viewsets
+from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from materials.models import Course, Lesson
-from materials.serializers import (CourseLessonSerializer, CourseSerializer,
-                                   LessonSerializer)
+from materials.models import Course, Lesson, Subscription
+from materials.pagination import PageSizePagination
+from materials.serializers import (
+    CourseLessonSerializer,
+    CourseSerializer,
+    LessonSerializer,
+)
 from users.permissions import IsModerators, IsOwner
 
 
 class CourseViewSet(viewsets.ModelViewSet):
     """Набор представлений для модели курс."""
 
-    queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    queryset = Course.objects.all()
+    pagination_class = PageSizePagination
 
     def get_serializer_class(self):
         if self.action == "retrieve":
@@ -51,6 +59,7 @@ class LessonListView(generics.ListAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
     permission_classes = [IsAuthenticated, IsModerators | IsOwner]
+    pagination_class = PageSizePagination
 
 
 class LessonDetailView(generics.RetrieveAPIView):
@@ -75,3 +84,21 @@ class LessonDeleteView(generics.DestroyAPIView):
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
     permission_classes = [IsAuthenticated, ~IsModerators | IsOwner]
+
+
+class SubscriptionApiView(APIView):
+    """Представление подписки на курс."""
+
+    def post(self, *args, **kwargs):
+        user = self.request.user
+        course_id = self.request.data.get("pk")
+        course_item = get_object_or_404(Course, pk=course_id)
+        sub_item, created = Subscription.objects.get_or_create(
+            user=user, course=course_item
+        )
+        if created:
+            message = "Подписка была создана."
+        else:
+            sub_item.delete()
+            message = "Подписка была удалена."
+        return Response(message)

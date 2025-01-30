@@ -5,9 +5,12 @@ from materials.models import Lesson
 
 
 class Command(BaseCommand):
-    help = "Fill the database from fixture"
+    """Очистка базы данных уроков и загрузка сохраненных ранее данных из фикстур в базу данных."""
+
+    help = "Заполнить базу данных уроков из фикстур."
 
     def handle(self, *args, **kwargs):
+        """Функция очистки базы данных и заполнения."""
         Lesson.objects.all().delete()
 
         call_command("loaddata", "fixture/lessons_fixture.json")
