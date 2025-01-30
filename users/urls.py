@@ -11,7 +11,7 @@ from users.views import (
     UserDeleteView,
     UserDetailView,
     UserListView,
-    UserUpdateView,
+    UserUpdateView, PaymentCreateView,
 )
 
 app_name = UsersConfig.name
@@ -36,4 +36,5 @@ urlpatterns = [
     path("user/update/<int:pk>/", UserUpdateView.as_view(), name="user_update"),
     path("user/delete/<int:pk>/", UserDeleteView.as_view(), name="user_delete"),
     path("payments/", PaymentListView.as_view(), name="payments_list"),
+    path("payments/create/", PaymentCreateView.as_view(), name="payments_create")
 ]  # + router.urls
