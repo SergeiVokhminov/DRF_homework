@@ -44,7 +44,10 @@ class LessonTestCase(APITestCase):
 
     def test_lesson_create(self):
         """Тест создания уроков."""
-        data = {"title": "New test", "link_to_the_video": "https://www.youtube.com/test/"}
+        data = {
+            "title": "New test",
+            "link_to_the_video": "https://www.youtube.com/test/",
+        }
         url = reverse("materials:lesson_create")
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
