@@ -7,7 +7,7 @@ from users.models import User
 
 @shared_task
 def user_last_login():
-    """Проверка время последнего входа."""
+    """Проверка последнего времени входа."""
 
     today = timezone.now().date()
     users = User.objects.all()
