@@ -12,6 +12,7 @@ from materials.serializers import (
     LessonSerializer,
 )
 from users.permissions import IsModerators, IsOwner
+from materials.tasks import notification
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -41,7 +42,11 @@ class CourseViewSet(viewsets.ModelViewSet):
         course.save()
 
     def perform_update(self, serializer):
-        pass
+        course_updated = serializer.save()
+        course_updated_id = course_updated.id  # получаем id измененного курса
+        course_updated_title = course_updated.title  # получаем название курса
+        notification.delay(course_updated_id, course_updated_title)
+        course_updated.save()
 
 
 class LessonCreateView(generics.CreateAPIView):
