@@ -1,8 +1,8 @@
 from django.urls import path
 from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 # from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from users.apps import UsersConfig
 from users.views import (
@@ -11,7 +11,8 @@ from users.views import (
     UserDeleteView,
     UserDetailView,
     UserListView,
-    UserUpdateView, PaymentCreateView,
+    UserUpdateView,
+    PaymentCreateView,
 )
 
 app_name = UsersConfig.name
@@ -36,5 +37,5 @@ urlpatterns = [
     path("user/update/<int:pk>/", UserUpdateView.as_view(), name="user_update"),
     path("user/delete/<int:pk>/", UserDeleteView.as_view(), name="user_delete"),
     path("payments/", PaymentListView.as_view(), name="payments_list"),
-    path("payments/create/", PaymentCreateView.as_view(), name="payments_create")
+    path("payments/create/", PaymentCreateView.as_view(), name="payments_create"),
 ]  # + router.urls
