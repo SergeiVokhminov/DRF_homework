@@ -170,7 +170,7 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 
 CELERY_BEAT_SCHEDULE = {
     "task-name": {
-        "task": "user.tasks.user_last_login",
+        "task": "users.tasks.user_last_login",
         "schedule": timedelta(minutes=1),
     },
 }
