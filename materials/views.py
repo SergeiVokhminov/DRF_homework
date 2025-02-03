@@ -40,9 +40,12 @@ class CourseViewSet(viewsets.ModelViewSet):
         course.owner = self.request.user
         course.save()
 
+    def perform_update(self, serializer):
+        pass
+
 
 class LessonCreateView(generics.CreateAPIView):
-    """Представление для добавления модели урок."""
+    """Представление для создания модели урока."""
 
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated, ~IsModerators]
@@ -79,7 +82,7 @@ class LessonUpdateView(generics.UpdateAPIView):
 
 
 class LessonDeleteView(generics.DestroyAPIView):
-    """Представление для удаления уроков."""
+    """Представление для удаления урока."""
 
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()
