@@ -12,6 +12,7 @@ from materials.serializers import (
     LessonSerializer,
 )
 from users.permissions import IsModerators, IsOwner
+from materials.tasks import notification
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -40,9 +41,16 @@ class CourseViewSet(viewsets.ModelViewSet):
         course.owner = self.request.user
         course.save()
 
+    def perform_update(self, serializer):
+        course_updated = serializer.save()
+        course_updated_id = course_updated.id  # получаем id измененного курса
+        course_updated_title = course_updated.title  # получаем название курса
+        notification.delay(course_updated_id, course_updated_title)
+        course_updated.save()
+
 
 class LessonCreateView(generics.CreateAPIView):
-    """Представление для добавления модели урок."""
+    """Представление для создания модели урока."""
 
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated, ~IsModerators]
@@ -79,7 +87,7 @@ class LessonUpdateView(generics.UpdateAPIView):
 
 
 class LessonDeleteView(generics.DestroyAPIView):
-    """Представление для удаления уроков."""
+    """Представление для удаления урока."""
 
     serializer_class = LessonSerializer
     queryset = Lesson.objects.all()

@@ -5,7 +5,7 @@ from materials.models import Course, Lesson
 
 
 class User(AbstractUser):
-    """Поля дя модели пользователя."""
+    """Поля для модели пользователя."""
 
     username = None
     email = models.EmailField(unique=True, verbose_name="Электронная почта")
@@ -39,6 +39,8 @@ class User(AbstractUser):
 
 
 class Payment(models.Model):
+    """Поля для модели платежа."""
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
