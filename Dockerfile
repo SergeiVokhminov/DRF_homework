@@ -20,8 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Создаем директорию для медиафайлов
-RUN mkdir -p /app/media
-RUN mkdir -p /app/staticfiles
+RUN mkdir -p /app/static
 
 # Пробрасываем порт, который будет использовать Django
 EXPOSE 8000
