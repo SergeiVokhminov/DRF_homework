@@ -1,6 +1,6 @@
-name: Django CI
+name: DRF CI
 
-on: [push, pull_request]
+on: [push,]
 
 jobs:
   test:
