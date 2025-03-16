@@ -1,17 +1,17 @@
 services:
   web:
     build: .
-    command: sh -c "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    command: sh -c "python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000 && python manage.py migrate"
     volumes:
       - .:/app
-      - static_volume:/app/staticfiles
+      - static_volume:/app/static
     ports:
       - "8000:8000"
     depends_on:
       - db
       - redis
     env_file:
-    - ./.env
+      - ./.env
 
   nginx:
     build:
@@ -33,7 +33,7 @@ services:
     expose:
       - "5432"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d -U $POSTGRES_USER" ]
+      test: [ "CMD-SHELL", "pg_isready -u $POSTGRES_USER" ]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -59,8 +59,8 @@ services:
       - .:/app
     depends_on:
       - redis
-      - web
-      - db
+#      - web
+#      - db
     env_file:
       - ./.env
 
@@ -74,8 +74,8 @@ services:
       - .:/app
     depends_on:
       - web
-      - db
-      - redis
+#      - db
+#      - redis
     env_file:
       - ./.env
 
