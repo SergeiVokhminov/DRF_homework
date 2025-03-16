@@ -16,13 +16,14 @@ COPY requirements.txt ./
 # Устанавливаем зависимости Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем исходный код приложения в контейнер
-COPY . .
 
 # Создаем директорию для медиафайлов
 RUN mkdir -p /app/static
 
 RUN mkdir -p /app/staticfiles && chmod -R 755 /app/staticfiles
+
+# Копируем исходный код приложения в контейнер
+COPY . .
 
 # Пробрасываем порт, который будет использовать Django
 EXPOSE 8000
