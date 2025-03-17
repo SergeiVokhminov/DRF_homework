@@ -48,6 +48,7 @@ class Lesson(models.Model):
         blank=True,
         null=True,
         help_text="Введите название урока",
+        default="Тестовое название урока"
     )
     picture = models.ImageField(
         upload_to="photo/picture/",
@@ -62,12 +63,14 @@ class Lesson(models.Model):
         blank=True,
         null=True,
         help_text="Введите описание урока",
+        default="Тестовое описание урока"
     )
     link_to_the_video = models.URLField(
         verbose_name="Ссылка на урок",
         help_text="Добавьте ссылку на урок",
         blank=True,
         null=True,
+        default="http://test.ru"
     )
     course = models.ForeignKey(
         Course,
