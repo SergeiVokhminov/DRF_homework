@@ -7,7 +7,7 @@ from materials.models import Course, Lesson
 class User(AbstractUser):
     """Поля для модели пользователя."""
 
-    username = None
+    username = models.CharField(max_length=20, default="Пользователь")
     email = models.EmailField(unique=True, verbose_name="Электронная почта")
     phone_number = models.CharField(
         max_length=35, verbose_name="Номер телефона", blank=True, null=True
