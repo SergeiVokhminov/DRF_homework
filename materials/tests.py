@@ -31,7 +31,7 @@ class LessonTestCase(APITestCase):
                 {
                     "id": self.lesson.pk,
                     "title": self.lesson.title,
-                    "picture": None,
+                    "picture": self.lesson.picture,
                     "description": self.lesson.description,
                     "link_to_the_video": self.lesson.link_to_the_video,
                     "course": 4,
