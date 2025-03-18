@@ -7,7 +7,7 @@ from materials.models import Course, Lesson
 class User(AbstractUser):
     """Поля для модели пользователя."""
 
-    username = models.CharField(max_length=20, default="Пользователь")
+    username = None
     email = models.EmailField(unique=True, verbose_name="Электронная почта")
     phone_number = models.CharField(
         max_length=35, verbose_name="Номер телефона", blank=True, null=True
@@ -18,7 +18,6 @@ class User(AbstractUser):
         help_text="Введите город",
         blank=True,
         null=True,
-        default="город не указан"
     )
     avatar = models.ImageField(
         upload_to="photo/avatars/",
@@ -79,7 +78,6 @@ class Payment(models.Model):
         max_length=50,
         verbose_name="Способ оплаты",
         help_text="Выберите способ оплаты",
-        default="Наличные"
     )
     session_id = models.CharField(
         max_length=255,
@@ -87,7 +85,6 @@ class Payment(models.Model):
         help_text="Введите ID сессии",
         blank=True,
         null=True,
-        default="тестовый id"
     )
     link_to_pay = models.URLField(
         max_length=400,
@@ -95,7 +92,6 @@ class Payment(models.Model):
         help_text="Добавьте ссылку на оплату",
         blank=True,
         null=True,
-        default="https://testov.com"
     )
 
     class Meta:

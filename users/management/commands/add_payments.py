@@ -5,10 +5,14 @@ from users.models import Payment
 
 
 class Command(BaseCommand):
-    help = "Fill the database from fixture"
+    """Очистка базы данных платежей и загрузка сохраненных ранее данных из фикстур в базу данных."""
+
+    help = "Заполнить базу данных платежей из фикстур."
 
     def handle(self, *args, **kwargs):
+        """Функция очистки базы данных и заполнения."""
+
         Payment.objects.all().delete()
 
-        call_command("loaddata", "payments_fixture.json")
+        call_command("loaddata", "fixture/payments_fixture.json")
         self.stdout.write(self.style.SUCCESS("Фикстуры успешно загружены"))
