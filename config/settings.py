@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "rest_framework",
     "rest_framework_simplejwt",
     "django_filters",
@@ -78,7 +77,7 @@ else:
             "USER": os.getenv("POSTGRES_USER"),
             "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
             "HOST": os.getenv("POSTGRES_HOST", default="db"),
-            "PORT": os.getenv("POSTGRES_PORT",  default="5432"),
+            "PORT": os.getenv("POSTGRES_PORT", default="5432"),
         }
     }
 
