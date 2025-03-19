@@ -77,7 +77,7 @@ jobs:
 
         - name: Deploy to server
           run: |
-            ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/drf:${{ github.sha }}
             docker stop drf || true
             docker rm drf || true
