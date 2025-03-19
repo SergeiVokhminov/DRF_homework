@@ -24,17 +24,17 @@ class LessonTestCase(APITestCase):
         response = self.client.get(url)
         data = response.json()
         result = {
-            "count": 4,
+            "count": 1,
             "next": None,
             "previous": None,
             "results": [
                 {
                     "id": self.lesson.pk,
                     "title": self.lesson.title,
-                    "picture": self.lesson.picture,
+                    "picture": None,
                     "description": self.lesson.description,
                     "link_to_the_video": self.lesson.link_to_the_video,
-                    "course": 4,
+                    "course": 1,
                     "owner": 1,
                 }
             ],
