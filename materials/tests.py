@@ -24,7 +24,7 @@ class LessonTestCase(APITestCase):
         response = self.client.get(url)
         data = response.json()
         result = {
-            "count": 1,
+            "count": 4,
             "next": None,
             "previous": None,
             "results": [
@@ -35,7 +35,7 @@ class LessonTestCase(APITestCase):
                     "description": self.lesson.description,
                     "link_to_the_video": self.lesson.link_to_the_video,
                     "course": 4,
-                    "owner": 4,
+                    "owner": 1,
                 }
             ],
         }
