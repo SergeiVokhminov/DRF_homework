@@ -38,17 +38,17 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: Check out code
-          uses: actions/checkout@v3
+      - name: Check out code
+        uses: actions/checkout@v3
 
-        - name: Login DockerHub
-          run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+      - name: Login DockerHub
+        run: echo ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
-        - name: Build image
-          run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/drf:${{ github.sha }} .
+      - name: Build image
+        run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/drf:${{ github.sha }} .
 
-        - name: Push image
-          run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/drf:${{ github.sha }}
+      - name: Push image
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/drf:${{ github.sha }}
 
   deploy:
       runs-on: ubuntu-latest
