@@ -67,7 +67,4 @@ jobs:
             docker stop drf || true
             docker rm drf || true
             docker-compose up -d
-#            docker stop mydrf || true
-#            docker rm mydrf || true
-#            docker run -d --name drf -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/mydrf:${{ github.sha }}
             EOF
