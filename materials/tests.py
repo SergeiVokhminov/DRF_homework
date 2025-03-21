@@ -34,8 +34,8 @@ class LessonTestCase(APITestCase):
                     "picture": None,
                     "description": self.lesson.description,
                     "link_to_the_video": self.lesson.link_to_the_video,
-                    "course": 4,
-                    "owner": 4,
+                    "course": 1,
+                    "owner": 1,
                 }
             ],
         }

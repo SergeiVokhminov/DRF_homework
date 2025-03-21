@@ -16,14 +16,18 @@ COPY requirements.txt ./
 # Устанавливаем зависимости Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем исходный код приложения в контейнер
-COPY . .
 
 # Создаем директорию для медиафайлов
 RUN mkdir -p /app/static
+
+RUN mkdir -p /app/staticfiles && chmod -R 755 /app/staticfiles
+
+# Копируем исходный код приложения в контейнер
+COPY . .
 
 # Пробрасываем порт, который будет использовать Django
 EXPOSE 8000
 
 # Команда для запуска приложения
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000"]

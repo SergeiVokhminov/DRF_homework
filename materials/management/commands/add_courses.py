@@ -11,6 +11,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         """Функция очистки базы данных и заполнения."""
+
         Course.objects.all().delete()
 
         call_command("loaddata", "fixture/courses_fixture.json")

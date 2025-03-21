@@ -11,8 +11,8 @@ from materials.serializers import (
     CourseSerializer,
     LessonSerializer,
 )
-from users.permissions import IsModerators, IsOwner
 from materials.tasks import notification
+from users.permissions import IsModerators, IsOwner
 
 
 class CourseViewSet(viewsets.ModelViewSet):
