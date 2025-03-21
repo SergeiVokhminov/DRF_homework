@@ -66,5 +66,5 @@ jobs:
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/mydrf:${{ github.sha }}
             docker stop mydrf || true
             docker rm mydrf || true
-            docker run -d --name drf -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/drf:${{ github.sha }}
+            docker run -d --name drf -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/mydrf:${{ github.sha }}
             EOF
