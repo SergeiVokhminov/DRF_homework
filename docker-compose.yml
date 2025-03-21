@@ -17,6 +17,7 @@ services:
       context: ./nginx
     ports:
       - "80:80"
+    restart: on-failure
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - static_volume:/app/staticfiles
